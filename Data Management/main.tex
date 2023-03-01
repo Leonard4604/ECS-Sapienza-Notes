@@ -1,0 +1,48 @@
+\documentclass[12pt]{article}
+
+\usepackage[english]{babel}
+\usepackage{titling}
+\usepackage{geometry}
+\usepackage{multirow}
+\usepackage{amsmath}
+\usepackage{float}
+\usepackage{caption}
+\usepackage{tikz}
+\usetikzlibrary{tikzmark}
+
+\newcommand{\subtitle}[1]{%
+  \posttitle{%
+    \par\end{center}
+    \begin{center}\LARGE#1\end{center}
+    \vskip0.5em}%
+}
+
+\geometry{
+	top=2.5cm, % Top margin
+	bottom=2.5cm, % Bottom margin
+    left=2.5cm, % Left margin
+    right=2.5cm, % Right margin
+}
+
+\title{\textbf{Data Management}}
+\author{Leonardo Maria Carrozzo}
+\date{2022/2023}
+
+\begin{document}
+
+\maketitle
+\thispagestyle{empty}
+
+\newpage\thispagestyle{empty}
+~\newpage
+
+\setcounter{page}{1}
+\pagenumbering{roman}
+\tableofcontents{}
+
+\newpage\thispagestyle{empty}
+~\newpage
+
+\include{Chapters/chap1.tex}
+
+\end{document}

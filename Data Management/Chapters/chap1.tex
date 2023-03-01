@@ -1,0 +1,71 @@
+\section{Introduction}
+\setcounter{page}{1}
+\pagenumbering{arabic}
+
+The course is based on the following topics:
+\begin{itemize}
+    \item \textbf{The structure of a Data Base Management System (DBMS)}: Realtional data and queries, Buffer manager;
+    \item \textbf{Transaction management}: The concept of transaction, Concurrency management;
+    \item \textbf{Crash management}: Classification of failures, Recovery;
+    \item \textbf{Data Warehousing}: Data warehousing architectures and operators, Data warehousing design;
+    \item \textbf{NoSQL databases}: Document-based databases (such as MongoDB), Graph databases OLAP vs OLTP (such as Neo4j);
+    \item \textbf{Physical structures for data bases}: File organizations for data base management, Principles of physical database design;
+    \item \textbf{Query processing}: Evaluation of realational algebra operatos, Fundamentals of query optimization;
+\end{itemize}
+
+\subsection{The relational data model}
+A \textbf{database} in the Realtional Model is a \textbf{set of tables} (or \textbf{relations}).
+Each \textbf{table} is a \textbf{set of rows} (or \textbf{tuples}). Each one with the \textbf{same set of columns} (or \textbf{attributes}).
+
+\vspace{2em}
+\begin{table}[ht!]
+    \parbox{.30\linewidth}{
+        \centering
+        \[
+        \renewcommand\arraystretch{1.2}
+        \begin{array}{|c|c|c|}
+            \hline
+            A & \tikzmark{startup}B & C\tikzmark{endup} \\
+            \hline
+            &  &  \\ 
+        \end{array}
+        \]
+
+        \captionsetup{labelformat=empty}
+        \caption*{$T_1$}
+    }
+    \begin{tikzpicture}[remember picture,overlay]
+        \foreach \Val in {up}
+        {
+        \draw[rounded corners,red,thick]
+        ([shift={(-0.5\tabcolsep,-0.5ex)}]pic cs:start\Val) 
+            rectangle 
+        ([shift={(0.5\tabcolsep,2ex)}]pic cs:end\Val);
+        }
+    \end{tikzpicture}
+    \hfill
+    \parbox{.30\linewidth}{
+        \centering
+        \begin{tabular}{ |c|c|c|c| } 
+            \hline
+            A & B & C \\
+            \hline
+                &  &  \\ 
+        \end{tabular}
+        \captionsetup{labelformat=empty}
+        \caption{$T_2$}
+    }
+    \dots
+    \parbox{.30\linewidth}{
+        \centering
+        \begin{tabular}{ |c|c|c|c| } 
+            \hline
+            A & B & C \\
+            \hline
+                &  &  \\ 
+        \end{tabular}
+        \captionsetup{labelformat=empty}
+        \caption*{$T_n$}
+    }
+\end{table}
+\vspace{2em}

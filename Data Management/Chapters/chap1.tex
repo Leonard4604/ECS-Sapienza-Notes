@@ -28,6 +28,8 @@ Each \textbf{table} is a \textbf{set of rows} (or \textbf{tuples}). Each one wit
             A & \tikzmark{startup}B & C\tikzmark{endup} \\
             \hline
             &  &  \\ 
+            \hline
+            &  \color{red}{v} &  \\ 
         \end{array}
         \]
 
@@ -48,7 +50,9 @@ Each \textbf{table} is a \textbf{set of rows} (or \textbf{tuples}). Each one wit
         \centering
         \begin{tabular}{ |c|c|c|c| } 
             \hline
-            A & B & C \\
+                A & B & C \\
+            \hline
+                &  &  \\ 
             \hline
                 &  &  \\ 
         \end{tabular}
@@ -60,7 +64,9 @@ Each \textbf{table} is a \textbf{set of rows} (or \textbf{tuples}). Each one wit
         \centering
         \begin{tabular}{ |c|c|c|c| } 
             \hline
-            A & B & C \\
+                A & B & C \\
+            \hline
+                &  &  \\ 
             \hline
                 &  &  \\ 
         \end{tabular}
@@ -69,3 +75,125 @@ Each \textbf{table} is a \textbf{set of rows} (or \textbf{tuples}). Each one wit
     }
 \end{table}
 \vspace{2em}
+{\it\color{red}v} is the value of the corresponding column and row. The attributes B and C form a \textbf{superkey}.
+
+\vspace{1em}
+We have then:
+\begin{itemize}
+    \item \textbf{Integrity constraint}: a rule at the level of the schema that all the rows must respect;
+    \item \textbf{Superkey}: there cannot exist two or more rows that have the same value as the combination of multiple attributes;
+    \item \textbf{Key}: attribute in a table;
+    \item \textbf{Foreign key}: attributes in a table are a reference of another table;
+    \item \textbf{Primary key}: special key that doesn't allow null values (a null value is a a special value that says that the value is missing).
+\end{itemize}
+
+\vspace{2em}
+\begin{table}[ht!]
+    \parbox{.45\linewidth}{
+        \centering
+        \[
+        \renewcommand\arraystretch{1.2}
+        \begin{array}{|c|c|c|}
+            \hline
+                A & B & C\\
+            \hline
+                & & c_1 \\ 
+            \hline
+                & & c_2 \\ 
+            \hline
+                & & c_3 \\ 
+            \hline
+                & & c_3 \\ 
+        \end{array}
+        \]
+
+        \captionsetup{labelformat=empty}
+        \caption*{$T_1$ {\color{red} Unordered set}}
+    }
+    \parbox{.45\linewidth}{
+        \centering
+        \[
+        \renewcommand\arraystretch{1.2}
+        \begin{array}{|c|c|c|}
+            \hline
+                D & E & F\\
+            \hline
+                c_0 & & \\ 
+            \hline
+                c_1 & & \\ 
+            \hline
+                c_2 & & \\ 
+            \hline
+                c_3 & & \\ 
+        \end{array}
+        \]
+
+        \captionsetup{labelformat=empty}
+        \caption*{$T_2$ {\color{red} Must not miss any key}}
+    }
+\end{table}
+
+\vspace{2em}
+
+\begin{table}[ht!]
+    \parbox{.45\linewidth}{
+        \centering
+        \[
+        \renewcommand\arraystretch{1.2}
+        \begin{array}{|c|c|c|}
+            \hline
+                A & B & C\\
+            \hline
+                a_1 & b_1 & c_1 \\ 
+            \hline
+                a_1 & b_2 & c_2 \\ 
+            \hline
+                a_2 & b_2 & c_3 \\ 
+            \hline
+               null & b_2 & c_3 \\ 
+        \end{array}
+        \]
+
+        \captionsetup{labelformat=empty}
+        \caption*{$T_1$ {\color{red} Unordered set}}
+    }
+    \parbox{.45\linewidth}{
+        \centering
+        \[
+        \renewcommand\arraystretch{1.2}
+        \begin{array}{|c|c|c|}
+            \hline
+                D & E & F\\
+            \hline
+                c_0 & & \\ 
+            \hline
+                c_1 & & \\ 
+            \hline
+                c_2 & & \\ 
+            \hline
+                c_3 & & \\ 
+        \end{array}
+        \]
+
+        \captionsetup{labelformat=empty}
+        \caption*{$T_2$ {\color{red} Must not miss any key}}
+    }
+\end{table}
+We have a "no predicate" on the null value: never equal and never different, comparation is always false.
+\vspace{2em}
+
+As we have said, the Relational Data Model uses the mathematical concept of a relation as the formalism for describing and representing data.
+A relation is a subset of a cartesian product of sets.
+A relation can be considered as a "table" with rows and columns.
+
+Codd introduced two different query languages for the relational data model:
+\begin{itemize}
+    \item \textbf{Relational Algebra}, which is a procedural language. It is an algebraic formalism in which queries are expressed by applying a sequence of operations to relations.
+    \item \textbf{Relational Calculus}, which is a declarative language. It is a logical formalism in which queries are expressed as formulas of fist-order logic.
+\end{itemize}
+
+\textbf{Codd's Theorem}: Relational Algebra and Relational Calculus are essentially equivalent in terms of expressive power.
+
+DBMSs are based on \textbf{SQL}, a hybrid of a procedural and a declarative language that combines features from both relational algebra and relational calculus.
+
+\subsection{Relational algebra}

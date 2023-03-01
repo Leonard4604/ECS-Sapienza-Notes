@@ -7,8 +7,16 @@
 \usepackage{amsmath}
 \usepackage{float}
 \usepackage{caption}
+\usepackage{color, colortbl}
 \usepackage{tikz}
-\usetikzlibrary{tikzmark}
+\usetikzlibrary{tikzmark, positioning, fit, shapes.misc}
+
+\usetikzlibrary{decorations.pathreplacing, calc}
+
+\tikzset{brace/.style={decorate, decoration={brace}},
+  brace mirrored/.style={decorate, decoration={brace,mirror}},
+}
+\usepackage{xcolor}
 
 \newcommand{\subtitle}[1]{%
   \posttitle{%
@@ -16,6 +24,8 @@
     \begin{center}\LARGE#1\end{center}
     \vskip0.5em}%
 }
+
+\newcolumntype{g}{>{\columncolor{red}}c}
 
 \geometry{
 	top=2.5cm, % Top margin

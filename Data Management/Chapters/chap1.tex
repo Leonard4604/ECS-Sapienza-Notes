@@ -197,3 +197,160 @@ Codd introduced two different query languages for the relational data model:
 DBMSs are based on \textbf{SQL}, a hybrid of a procedural and a declarative language that combines features from both relational algebra and relational calculus.
 
 \subsection{Relational algebra}
+The operators of Relational Algebra can be divided into two groups:
+\begin{itemize}
+    \item Three standard set-theoretic binary operations:
+        \begin{itemize}
+            \item Union
+            \item Difference
+            \item Cartesia Product
+        \end{itemize}
+    \item Two special unary operations on relations:
+        \begin{itemize}
+            \item Projection
+            \item Selection
+        \end{itemize}
+\end{itemize}
+
+The Relational Algebra consists of all expressions obtained by combining these five basics operations in syntactically correct ways.
+
+\begin{itemize}
+    \item In relational algebra, both arguments of the union and the difference must be relations of the same arity.
+    \item In SQL, there is the additional requirement that the corresponding attributes must have the same data type.
+    \item However, the corresponding attributes need not have the same names; the corresponding attribute in the result can be renamed arbitrarily.
+\end{itemize}
+
+\subsubsection{Union}
+\begin{itemize}
+    \item Takes in input two k-ary relations R and S, for some k.
+    \item Gives in output the k-ary relation R $\cup$ S, where:
+\end{itemize}
+R $\cup$ S=\{($a_1,...,a_k$): ($a_1,...,a_k$) is in R or ($a_1,...,a_k$) is in S\} 
+
+\subsubsection{Difference}
+\begin{itemize}
+    \item Takes in input two k-ary relations R and S, for some k.
+    \item Gives in output the k-ary relation R $-$ S, where:
+\end{itemize}
+R $-$ S = \{($a_1,...,a_k$): ($a_1,...,a_k$) is in R and ($a_1,...,a_k$) is not in S\}
+
+\subsubsection{Cartesian Product}
+\begin{itemize}
+    \item Take in input an m-ary relation R and an n-ary relation S.
+    \item Gives in output the (m+n)-ary relation R $\times$, where:
+\end{itemize}
+R $\times$ S = \{($a_1,...,a_m,b_1,...,b_n$): ($a_1,...,a_m$) is in R and ($b_1,...,b_n$) is in S\}
+
+\vspace{1.5em}
+Note:
+$\left\lvert R \times S \right\rvert$ = $\left\lvert R \right\rvert$ $\times$ $\left\lvert S \right\rvert$
+
+\vspace{1.5em}
+Let's see an example:
+
+\begin{table}[ht!]
+    \parbox{.25\linewidth}{
+    \centering
+        \begin{tabular}{ |c|c| }
+            \hline
+                Emp & Dept \\
+            \hline
+            \hline
+                Rossi & A \\
+            \hline
+                Neri & B \\
+            \hline
+                Bianchi & B \\
+            \hline
+        \end{tabular}
+        \caption*{Employee}
+    }
+    \hfill
+    \parbox{.25\linewidth}{
+    \centering
+        \begin{tabular}{ |c|c| }
+            \hline
+                Dept & Char \\
+            \hline
+            \hline
+                A & Mori \\
+            \hline
+                B & Bruni \\
+            \hline
+        \end{tabular}
+        \caption*{Dept}
+    }
+    \hfill
+    \parbox{.40\linewidth}{
+    \centering
+        \begin{tabular}{ |c|c|c|c| }
+            \hline
+                Emp & Dept & Code & Chair \\
+            \hline
+            \hline
+                Rossi & A & A & Mori \\
+            \hline
+                Rossi & A & B & Bruni \\
+            \hline
+                Neri & B & A & Mori \\
+            \hline
+                Neri & B & B & Bruni \\
+            \hline
+                Bianchi & B & A & Mori \\
+            \hline
+                Bianchi & B & B & Bruni \\
+            \hline
+        \end{tabular}
+        \caption*{Employee $\times$ Dept}
+    }
+\end{table}
+
+\subsubsection{Projection Operation}
+Given a table R, we want to rearrange the order of the columns and/or suppress/rename some columns.
+
+Projection is a family of unary operations of the form:
+
+\begin{center}
+    $\pi_{<\mbox{attribute list}>}$($<\mbox{relation name}>$) or
+    PROJ$_{<\mbox{attribute list}>}$($<\mbox{relation name}>$)
+\end{center}
+
+When the projection is applied to a relation R, it removes all columns whose attributes do \underline{not} appear in the $<\mbox{attribute list}>$ (we assume that an attribute can appear only once in the list).
+
+The remaining columns may be re-arranged (and also renamed by means of the notation a $\leftarrow$ b) according to the order and name in the $<\mbox{attribute list}>$.
+
+Any duplicate rows are eliminated.
+
+\subsubsection{Selection Operation}
+Selection is a family of unary operations of the form:
+
+\begin{center}
+    $\sigma_\theta$(R) or
+    SEL$_\theta$(R)
+\end{center}
+
+where R is a relation and $\theta$ is a \underline{condition} that can be applied as a test to each row of R.
+
+When a selection operation is applied to R, it returns the subset of R consisting of all rows that satisfy the condition $\theta$.
+
+Here are some examples:
+$\sigma_{\mbox{A=10}}$(T)= or $\sigma_{\mbox{(A=10 or B} > \mbox{20) and C is not null}}$(T)=
+
+Where A = 10 is a boolean expression. T might be an expression or a table.
+
+\vspace{1.5em}
+We have two special predicates:
+\begin{itemize}
+    \item is null
+    \item is not null
+\end{itemize}
+
+\vspace{1.5em}
+A \underline{condition} in the selection operation is an expression built up from: 
+\begin{itemize}
+    \item Comparison operators $=$, $<$, $>$, $\neq$, $\leq$, $\geq$ applied to operands that are constants or attribute names or component numbers. (These are the \underline{basic (atomic) clauses}) of the conditions).
+    \item The boolean login operators $\wedge$, $\vee$,: applied to basic clauses.
+\end{itemize}
+
+\subsubsection{Relational Algebra Expression}
+A \underline{relational algebra expression} is an expression obtained from relation schemas using union, difference, cartesian produtct, projection, and selection.
